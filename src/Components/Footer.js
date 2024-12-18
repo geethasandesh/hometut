@@ -50,7 +50,7 @@ const Footer = () => {
 
         {/* Copyright */}
         <div className="text-sm">
-          <p>&copy; {new Date().getFullYear()} InnovTuitions. All Rights Reserved.</p>
+          <p>&copy; {new Date().getFullYear()} InnovTuitions.. All Rights Reserved.</p>
         </div>
       </div>
     </footer>
