@@ -8,15 +8,16 @@ export default async function handler(req, res) {
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "groupartihcus@gmail.com", // Sender's email
-        pass: "sgam fzkj myvd ycxv", // App-specific password
+        user: process.env.EMAIL_USER, // Use environment variable
+        pass: process.env.EMAIL_PASS, // Use environment variable
       },
     });
+    
 
     // Email content with user details
     const mailOptions = {
       from: "groupartihcus@gmail.com",
-      to: "innovimagine@gmail.com", // Receiver email
+      to: "innovimagine@gmail.com", // Replace with your receiver email
       subject: "New Home Tuition Registration Details",
       text: `
         New Registration Details:

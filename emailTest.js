@@ -1,58 +1,23 @@
-const express = require("express");
-const nodemailer = require("nodemailer");
-const cors = require("cors"); // To handle cross-origin requests
-
-const app = express();
-const port = 5000;
-
-// Middleware
-app.use(express.json()); // To parse JSON data
-app.use(cors()); // Enable CORS for frontend communication
-
-// Nodemailer Transporter Configuration
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: "groupartihcus@gmail.com", // Sender's email
-    pass: "sgam fzkj myvd ycxv", // App-specific password for Gmail
+fetch("https://hometuitions.vercel.app/api/sendEmail", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
   },
-});
-
-// POST endpoint to send user details via email
-app.post("/send-email", (req, res) => {
-  const { studentName, area, class: studentClass, parentMobile, board } = req.body;
-
-  // Email content with user details
-  const mailOptions = {
-    from: "groupartihcus@gmail.com",
-    to: "innovimagine@gmail.com", // Receiver email
-    subject: "New Home Tuition Registration Details",
-    text: `
-      New Registration Details:
-
-      Student Name: ${studentName}
-      Area: ${area}
-      Class: ${studentClass}
-      Parent Mobile: ${parentMobile}
-      Board: ${board}
-
-      Thank you!
-    `,
-  };
-
-  // Send the email
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.error("Error sending email:", error);
-      res.status(500).send({ message: "Failed to send email", error });
+  body: JSON.stringify({
+    studentName: "John Doe", // Replace with actual data
+    area: "Downtown",       // Replace with actual data
+    class: "10",            // Replace with actual data
+    parentMobile: "1234567890", // Replace with actual data
+    board: "CBSE",          // Replace with actual data
+  }),
+})
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data);
+    if (data.message === "Email sent successfully!") {
+      alert("Email sent successfully!");
     } else {
-      console.log("Email sent successfully: " + info.response);
-      res.status(200).send({ message: "Email sent successfully!" });
+      alert("Failed to send email.");
     }
-  });
-});
-
-// Start the server
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
-});
+  })
+  .catch((error) => console.error("Error:", error));
