@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios"; // Import axios for HTTP requests
-
+import tutor from "../Images/imagee1.png"
 const Hero = () => {
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState({
@@ -51,21 +51,34 @@ const Hero = () => {
   };
 
   return (
-    <div className="bg-gray-100 h-screen flex flex-col items-center justify-center text-center relative">
+    <div className="bg-gray-100 h-screen flex flex-col items-center justify-center relative">
       {!showForm ? (
-        <div>
-          <h1 className="text-5xl font-bold text-gray-800 mb-4">
-            Find the Best Tutors for Home Tuitions
-          </h1>
-          <p className="text-gray-600 text-lg mb-6">
-            Quality education at your doorstep for all subjects.
-          </p>
-          <button
-            onClick={handleGetStartedClick}
-            className="bg-orange-500 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-orange-600"
-          >
-            Get Started
-          </button>
+        <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-5xl px-4 md:px-8">
+          {/* Text and Button Section */}
+          <div className="text-center md:text-left flex-1">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+              Find the Best Tutors for Home Tuitions
+            </h1>
+            <p className="text-gray-600 text-lg mb-6">
+              Quality education at your doorstep for all subjects.
+            </p>
+            
+            <button
+              onClick={handleGetStartedClick}
+              className="bg-orange-500 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-orange-600 transition ml-28"
+            >
+              Get Started
+            </button>
+          </div>
+
+          {/* GIF Image Section */}
+          <div className="flex-1 flex justify-center mt-6 md:mt-0 ml-10">
+            <img
+              src={tutor}
+              alt="tutor"
+              className="w-80 md:w-96"
+            />
+          </div>
         </div>
       ) : (
         <div className="bg-white p-8 rounded-lg shadow-lg w-11/12 md:w-1/3 absolute z-50">
@@ -86,7 +99,10 @@ const Hero = () => {
 
           <form className="space-y-4" onSubmit={handleSubmit}>
             <div>
-              <label htmlFor="studentName" className="block text-gray-700 font-medium mb-1">
+              <label
+                htmlFor="studentName"
+                className="block text-gray-700 font-medium mb-1"
+              >
                 Student Name
               </label>
               <input
@@ -100,7 +116,10 @@ const Hero = () => {
               />
             </div>
             <div>
-              <label htmlFor="area" className="block text-gray-700 font-medium mb-1">
+              <label
+                htmlFor="area"
+                className="block text-gray-700 font-medium mb-1"
+              >
                 Area
               </label>
               <input
@@ -114,7 +133,10 @@ const Hero = () => {
               />
             </div>
             <div>
-              <label htmlFor="class" className="block text-gray-700 font-medium mb-1">
+              <label
+                htmlFor="class"
+                className="block text-gray-700 font-medium mb-1"
+              >
                 Class
               </label>
               <select
@@ -140,7 +162,10 @@ const Hero = () => {
               </select>
             </div>
             <div>
-              <label htmlFor="parentMobile" className="block text-gray-700 font-medium mb-1">
+              <label
+                htmlFor="parentMobile"
+                className="block text-gray-700 font-medium mb-1"
+              >
                 Parent Mobile Number
               </label>
               <input
@@ -154,7 +179,10 @@ const Hero = () => {
               />
             </div>
             <div>
-              <label htmlFor="board" className="block text-gray-700 font-medium mb-1">
+              <label
+                htmlFor="board"
+                className="block text-gray-700 font-medium mb-1"
+              >
                 Select Board
               </label>
               <select
