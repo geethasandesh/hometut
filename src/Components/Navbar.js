@@ -38,9 +38,9 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'} bg-gray-800 p-4`}>
         <Link to="/" className="block text-white py-2">Home</Link>
-        <Link to="/about" className="block text-white py-2">About</Link>
-        <Link to="/projects" className="block text-white py-2">Projects</Link>
-        <Link to="/courses" className="block text-white py-2">Courses</Link>
+        <Link to="/about" className="block text-white py-2">Need a Tutor</Link>
+        <Link to="/projects" className="block text-white py-2">Become a Tutor</Link>
+        <Link to="/courses" className="block text-white py-2">About </Link>
       </div>
     </nav>
   );
