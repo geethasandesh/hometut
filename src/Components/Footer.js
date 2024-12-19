@@ -4,7 +4,7 @@ import { FiMail, FiPhoneCall } from 'react-icons/fi';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white py-4 rounded-t-3xl rounded-b-3xl -mt-1">
+    <footer className="bg-gray-900 text-white py-4 rounded-t-3xl rounded-b-3xl -mt-1">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 px-4">
         {/* Social Media Icons */}
         <div className="flex space-x-6">
@@ -37,8 +37,10 @@ const Footer = () => {
         {/* Contact Info */}
         <div className="flex space-x-8 text-sm">
           <div className="flex items-center space-x-2">
-            <FiMail className="text-orange-500" />
-            <span>innovimagine@gmail.com</span>
+            <a href="mailto:innovimagine@gmail.com" className='flex items-center space-x-2  hover:text-orange-500 transition'>
+              <FiMail className="text-orange-500" />
+              <span>innovimagine@gmail.com</span>
+            </a>
           </div>
           <div className="flex items-center space-x-2">
             <a href="tel:+918522997578" className="flex items-center space-x-2 hover:text-orange-500 transition">

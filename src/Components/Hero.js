@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import axios from "axios"; // Import axios for HTTP requests
-import tutor from "../Images/imagee1.png"
+import tutor from "../Images/imagee1.png";
+
 const Hero = () => {
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState({
@@ -24,30 +24,44 @@ const Hero = () => {
     setFormData({ ...formData, [id]: value });
   };
 
-  // Handle form submission
+  // Handle form submission and send email
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Send email request to the server
     try {
-      // Send data to the backend
-      await axios.post("http://localhost:5000/send-email", formData);
-
-      setSuccessMessage("Registration successful! Details sent to email.");
-      setFormData({
-        studentName: "",
-        area: "",
-        class: "",
-        parentMobile: "",
-        board: "",
+      const response = await fetch("http://localhost:5000/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       });
-      setTimeout(() => {
-        setShowForm(false);
-        setSuccessMessage("");
-      }, 3000); // Close form after 3 seconds
+
+      if (response.ok) {
+        setSuccessMessage("Registration successful!");
+      } else {
+        setSuccessMessage("Error sending email. Please try again.");
+      }
     } catch (error) {
-      console.error("Error sending email:", error);
-      alert("Error: Unable to send details. Try again later.");
+      console.error("Error:", error);
+      setSuccessMessage("Error sending email. Please try again.");
     }
+
+    // Clear the form data
+    setFormData({
+      studentName: "",
+      area: "",
+      class: "",
+      parentMobile: "",
+      board: "",
+    });
+
+    // Close the form after a short delay
+    setTimeout(() => {
+      setShowForm(false);
+      setSuccessMessage("");
+    }, 3000); // Close form after 3 seconds
   };
 
   return (
@@ -62,17 +76,17 @@ const Hero = () => {
             <p className="text-gray-600 text-lg mb-6">
               Quality education at your doorstep for all subjects.
             </p>
-            
+
             <button
               onClick={handleGetStartedClick}
-              className="bg-orange-500 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-orange-600 transition ml-28"
+              className="bg-orange-500 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-orange-600 transition ml-25"
             >
               Get Started
             </button>
           </div>
 
           {/* GIF Image Section */}
-          <div className="flex-1 flex justify-center mt-6 md:mt-0 ml-10">
+          <div className="flex-1 flex justify-center mt-6 md:mt-0 ml-5">
             <img
               src={tutor}
               alt="tutor"

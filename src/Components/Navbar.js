@@ -46,10 +46,7 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex space-x-12">
-          <Link to="/" className="text-white hover:text-orange-500">Home</Link>
-          <Link to="/about" className="text-white hover:text-orange-500">Need a Tutor</Link>
-          <Link to="/projects" className="text-white hover:text-orange-500">Become a Tutor</Link>
-          <Link to="/courses" className="text-white hover:text-orange-500">About</Link>
+
         </div>
 
         {/* Mobile Menu Button */}
@@ -64,11 +61,8 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu */}
-      <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'} bg-gray-800 p-4`}>
-        <Link to="/" className="block text-white py-2">Home</Link>
-        <Link to="/about" className="block text-white py-2">Need a Tutor</Link>
-        <Link to="/projects" className="block text-white py-2">Become a Tutor</Link>
-        <Link to="/courses" className="block text-white py-2">About</Link>
+      <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'} bg-gray-900 p-4 flex flex-col items-center py-4 z-40 ` }>
+  
       </div>
     </nav>
   );
