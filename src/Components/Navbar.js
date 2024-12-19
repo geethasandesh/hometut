@@ -1,15 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'; // Assuming you're using React Router for navigation
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY) {
+        // Scrolling down
+        setIsVisible(false);
+      } else {
+        // Scrolling up
+        setIsVisible(true);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [lastScrollY]);
+
   return (
-    <nav className="bg-gray-800 p-4">
+    <nav
+      className={`bg-gray-900 p-4 fixed top-0 w-full z-50 transition-transform duration-300 ${
+        isVisible ? 'translate-y-0' : '-translate-y-full'
+      }`}
+    >
       <div className="container mx-auto flex items-center justify-between">
         {/* Logo */}
         <div className="text-white text-2xl font-bold">
@@ -40,7 +68,7 @@ const Navbar = () => {
         <Link to="/" className="block text-white py-2">Home</Link>
         <Link to="/about" className="block text-white py-2">Need a Tutor</Link>
         <Link to="/projects" className="block text-white py-2">Become a Tutor</Link>
-        <Link to="/courses" className="block text-white py-2">About </Link>
+        <Link to="/courses" className="block text-white py-2">About</Link>
       </div>
     </nav>
   );
